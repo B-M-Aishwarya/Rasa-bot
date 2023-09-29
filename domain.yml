@@ -1,0 +1,279 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - default_fallback
+  - html_element
+  - create_html_element
+  - style_html
+  - html_with_javascript
+  - html_best_practices
+  - css
+  - css_styles
+  - css_selectors
+  - css_layout
+  - css_animations
+  - css_best_practices
+  - troubleshoot_css
+  - javascript
+  - javascript_syntax
+  - manipulate_dom
+  - javascript_functions
+  - javascript_ajax
+  - javascript_events
+  - javascript_best_practices
+  - python
+  - python_syntax
+  - python_variables
+  - python_data_types
+  - python_operators
+  - python_control_structures
+  - python_functions
+  - python_oop
+  - python_libraries
+  - python_best_practices
+  - java
+  - java_syntax
+  - java_variables
+  - java_data_types
+  - java_operators
+  - java_control_structures
+  - java_functions
+  - java_oop
+  - java_libraries
+  - java_best_practices
+  - php
+  - php_syntax
+  - php_variables
+  - php_data_types
+  - php_operators
+  - php_control_structures
+  - php_functions
+  - php_oop
+  - php_libraries
+  - php_best_practices
+  - reactjs
+  - reactjs_syntax
+  - reactjs_components
+  - reactjs_state
+  - reactjs_props
+  - reactjs_lifecycle
+  - reactjs_events
+  - reactjs_state_mngmt
+  - reactjs_best_practices
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_default_fallback:
+  - text: "I'm sorry, I didn't understand that. Can you please rephrase or ask something else?"
+
+  utter_html_element:
+  - text: "An HTML element is a fundamental building block of a web page. It represents different types of content, such as text, images, links, and more. HTML elements are defined using tags and may include attributes. They define the structure and content of a webpage."
+ 
+  utter_create_html_element:
+  - text: "To create various HTML elements, you can use tags. For example, to create a hyperlink, you can use the `<a>` tag with the `href` attribute. To add an image, use the `<img>` tag with the `src` attribute. To make a list, use `<ul>` for unordered lists or `<ol>` for ordered lists, along with `<li>` for list items. To create a table, use `<table>`, `<tr>` for rows, `<td>` for data cells, and `<th>` for table headers. To insert a form, use the `<form>` tag with various input elements like `<input>`, `<textarea>`, and `<button>`. Headings are created with `<h1>` to `<h6>` tags, where `<h1>` is the highest level and `<h6>` is the lowest."
+  
+  utter_style_html:
+  - text: "You can style your HTML page using CSS (Cascading Style Sheets). To change text color, you can use the `color` property in CSS. For backgrounds, use properties like `background-color` and `background-image`. To apply fonts, use the `font-family` property. To center elements, you can use the `margin: 0 auto;` CSS rule for horizontal centering, or CSS Flexbox or Grid for more complex layouts."
+  
+  utter_html_with_javascript:
+  - text: "JavaScript is used to manipulate HTML content dynamically. You can change HTML content using JavaScript by selecting HTML elements and modifying their properties or innerHTML. Event handling in HTML with JavaScript involves attaching event listeners to HTML elements to respond to user interactions. To validate forms using JavaScript, use the `form` element's `onsubmit` event. To create dynamic web pages with JavaScript, you can use JavaScript libraries and frameworks like React or Angular."
+  
+  utter_html_best_practices:
+  - text: "Best practices for writing HTML include using semantic elements to define the meaning and structure of your content, which improves accessibility and SEO. It's important to use valid HTML markup to ensure consistency and compatibility across browsers. Additionally, consider responsive web design principles to make your website adaptable to different screen sizes and devices."
+  
+  utter_css:
+  - text: "CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation and design of HTML documents. It controls how web pages look and feel."
+  
+  utter_css_styles:
+  - text: "To apply CSS styles to text, you can use properties like `color` for text color, `font-size` for font size, and `font-family` for font selection. To add colors to elements, use the `background-color` property. Margin and padding properties, such as `margin` and `padding`, control spacing around elements. You can style backgrounds using `background-image` and other related properties. CSS classes and IDs allow you to apply styles to specific elements using selectors."
+  
+  utter_css_selectors:
+  - text: "CSS selectors are patterns used to select and style HTML elements. They include element selectors (e.g., `p`, `div`), class selectors (e.g., `.my-class`), and ID selectors (e.g., `#my-id`). You can also use pseudo-classes (e.g., `:hover`, `:nth-child`) and pseudo-elements (e.g., `::before`, `::after`) to style elements based on various conditions."
+  
+  utter_css_layout:
+  - text: "To control the layout of a webpage with CSS, you can use techniques like Flexbox and CSS Grid. Flexbox allows for flexible and responsive layouts, while CSS Grid provides grid-based layouts. To center elements horizontally, you can use `margin: 0 auto;`. To create a responsive navigation menu, consider using Flexbox or CSS Grid. For a two-column layout, use CSS Grid or float-based approaches."
+  
+  utter_css_animations:
+  - text: "CSS animations involve creating animated effects using CSS properties. Keyframes and animations are used to define the animation sequences. CSS transitions allow for smooth property transitions. To fade in elements, you can use `opacity` or CSS transitions. Creating a CSS carousel typically involves positioning and transitioning elements. You can animate properties like color and size using keyframes."
+  
+  utter_css_best_practices:
+  - text: "Best practices for writing CSS include using consistent naming conventions and methodologies like BEM or SMACSS. To optimize CSS for performance, minimize the use of large, unused styles, and consider minification and compression. Ensure cross-browser compatibility by testing in different browsers. Responsive web design is important for adapting to various screen sizes. CSS preprocessors like SASS offer additional features like variables and nesting."
+  
+  utter_troubleshoot_css:
+  - text: >
+      If your CSS styles are not applying or you encounter issues, here are some troubleshooting steps:
+      - Check for typos in class and ID names.
+      - Verify that CSS files are linked correctly in your HTML.
+      - Inspect your HTML structure and CSS selectors.
+      - Use browser developer tools to identify errors in the console.
+      - Test in different browsers for compatibility.
+      - Ensure CSS files are up to date and not cached.
+      - Validate your CSS code using online validators.
+      - Consider resetting or normalizing styles for consistent rendering across browsers.
+
+  utter_javascript:
+  - text: "JavaScript is a high-level, versatile programming language primarily used for adding interactivity and behavior to web pages. It's commonly used for client-side scripting."
+
+  utter_javascript_syntax:
+  - text: "JavaScript syntax includes declaring variables using `var`, `let`, or `const`. Data types include numbers, strings, booleans, objects, and more. Operators like `+`, `-`, `*`, and `/` perform arithmetic operations. Conditional statements like `if`, `else if`, and `switch` control program flow. Functions are created using the `function` keyword or arrow functions (`=>`)."
+
+  utter_manipulate_dom:
+  - text: "To manipulate the DOM with JavaScript, you can select HTML elements using methods like `getElementById`, `querySelector`, and more. You can change HTML content with properties like `innerHTML`. Event listeners are used to respond to user interactions. To add or remove elements, use methods like `appendChild` and `removeChild`. Handling user interactions often involves listening for events like `click`, `keyup`, and `submit`."
+
+  utter_javascript_functions:
+  - text: "JavaScript functions are blocks of reusable code. Parameters are passed to functions for input. Callbacks are functions passed as arguments to other functions, often used for asynchronous operations. Arrow functions (`=>`) provide a concise syntax for defining functions. The `this` keyword refers to the current object. Functions can return values using the `return` statement."
+
+  utter_javascript_ajax:
+  - text: "AJAX (Asynchronous JavaScript and XML) is a technique for making asynchronous requests to a server without reloading the entire page. You can use the `XMLHttpRequest` object or the `fetch` API for data retrieval. Handling AJAX responses involves using callbacks or promises. JSON (JavaScript Object Notation) is a common format for data exchange in JavaScript."
+
+  utter_javascript_events:
+  - text: "JavaScript events are actions or occurrences in the browser, such as user clicks or keypresses. Handling events involves attaching event listeners to HTML elements. Event propagation and bubbling describe how events propagate through the DOM tree. You can prevent default actions using `event.preventDefault()`. Event delegation allows you to handle events for multiple elements with a single event listener. Custom events can be created using the `CustomEvent` constructor."
+
+  utter_javascript_best_practices:
+  - text: "Best practices for writing JavaScript code include using coding conventions and style guides for consistency. To optimize JavaScript code for performance, minimize DOM manipulation and consider asynchronous programming with promises or async/await. Error handling is essential for robust code. Modular JavaScript promotes code organization and reusability. ES6 (ECMAScript 2015) features like classes and modules provide improved syntax and structure for JavaScript applications."
+  
+  utter_python:
+  - text: "Python is a high-level, interpreted programming language known for its readability and versatility. It is commonly used in web development, data analysis, machine learning, scientific computing, and more."
+  
+  utter_python_syntax:
+  - text: "Python syntax is characterized by its simplicity and readability. It uses indentation to define code blocks, and statements do not require semicolons. Variables are declared without specifying data types. Comments begin with the # character and are ignored by the interpreter."
+  
+  utter_python_variables:
+  - text: "Python variables are used to store and manage data. They are declared by assigning a value to a name. Python does not require specifying data types for variables, as it infers them from the assigned values."
+  
+  utter_python_data_types:
+  - text: "Python supports various data types, including integers, floating-point numbers, strings, booleans, lists, tuples, dictionaries, and sets. Each data type has specific operations and uses."
+  
+  utter_python_operators:
+  - text: "Python includes operators for arithmetic (+, -, *, /), comparison (==, !=, <, >), logical (and, or, not), assignment (=, +=, -=), and more. Operators perform operations on variables and values."
+  
+  utter_python_control_structures:
+  - text: "Python provides control structures like if statements for conditional execution, for loops for iteration, and while loops for repetitive tasks. The try/except blocks handle exceptions and errors."
+  
+  utter_python_functions:
+  - text: "In Python, functions are defined using the def keyword. They can take parameters and return values using the return statement. Functions allow you to encapsulate code for reuse."
+  
+  utter_python_oop:
+  - text: "Python supports object-oriented programming (OOP), allowing you to define classes and create objects. OOP concepts like inheritance, encapsulation, and polymorphism are supported in Python."
+  
+  utter_python_libraries:
+  - text: "Python has a vast ecosystem of libraries and modules for various purposes. Popular libraries include NumPy for numerical computations, pandas for data analysis, Matplotlib for data visualization, and TensorFlow for machine learning."
+  
+  utter_python_best_practices:
+  - text: "Best practices for writing Python code include following the PEP 8 style guide for code readability, using meaningful variable and function names, writing docstrings for documentation, and testing code with unit tests. Modularize your code for reusability, and consider using virtual environments for project isolation."
+  
+  utter_java:
+  - text: "Java is a high-level, object-oriented programming language known for its platform independence. It's widely used in web development, mobile app development (Android), enterprise software, and more."
+
+  utter_java_syntax:
+  - text: "Java syntax includes defining classes, methods, variables, and using semicolons to terminate statements. It enforces strong typing, and blocks of code are enclosed in curly braces."
+
+  utter_java_variables:
+  - text: "Java variables are used to store data. They are declared with a specific data type and can hold values such as numbers, text, or objects."
+
+  utter_java_data_types:
+  - text: "Java supports various data types, including integers (int), floating-point numbers (float), characters (char), booleans (boolean), and more. Objects can also have custom data types."
+
+  utter_java_operators:
+  - text: "Java includes operators for arithmetic, comparison, logical operations, and assignment. For example, + for addition, == for equality, and && for logical AND."
+
+  utter_java_control_structures:
+  - text: "Java provides control structures like if statements for conditional execution, for and while loops for iteration, and try/catch blocks for exception handling."
+
+  utter_java_functions:
+  - text: "In Java, functions are called methods. They are defined within classes and can take parameters and return values. Java also supports method overloading and overriding."
+
+  utter_java_oop:
+  - text: "Java is an object-oriented language. It supports classes, objects, inheritance, encapsulation, and polymorphism. It's known for its robust support for OOP principles."
+
+  utter_java_libraries:
+  - text: "Java has a rich ecosystem of libraries and frameworks for various purposes. Examples include Spring for web development, Hibernate for database access, and JavaFX for building desktop applications."
+
+  utter_java_best_practices:
+  - text: "Best practices for writing Java code include following naming conventions, using meaningful variable and method names, writing documentation (Javadoc), and adhering to design patterns. Testing with JUnit and version control are also important."
+  
+  utter_php:
+  - text: "PHP is a widely-used, open-source scripting language designed for web development. It can be embedded within HTML code and is often used for creating dynamic web pages and web applications."
+
+  utter_php_syntax:
+  - text: "PHP syntax involves embedding PHP code within HTML using `<?php` and `?>` tags. PHP statements end with a semicolon. Variables start with a dollar sign ($), and PHP is case-sensitive."
+
+  utter_php_variables:
+  - text: "PHP variables are used to store data. They start with a dollar sign ($), followed by the variable name. Variable names are case-sensitive, and PHP supports various data types."
+
+  utter_php_data_types:
+  - text: "PHP data types include integers, floating-point numbers, strings, booleans, arrays, objects, and more. PHP dynamically assigns data types to variables."
+
+  utter_php_operators:
+  - text: "PHP includes operators for arithmetic, comparison, logical operations, and assignment. For example, + for addition, == for equality, and && for logical AND."
+
+  utter_php_control_structures:
+  - text: "PHP control structures include if statements for conditional execution, for and while loops for iteration, and try/catch blocks for exception handling."
+
+  utter_php_functions:
+  - text: "In PHP, functions are defined using the `function` keyword. They can take parameters and return values. PHP also supports anonymous functions (closures)."
+
+  utter_php_oop:
+  - text: "PHP supports object-oriented programming (OOP) with features like classes, objects, inheritance, encapsulation, polymorphism, abstract classes, and interfaces."
+
+  utter_php_libraries:
+  - text: "PHP has a wide range of libraries and frameworks for web development. Popular options include Laravel, Symfony, CodeIgniter, and WordPress for content management."
+
+  utter_php_best_practices:
+  - text: "Best practices for writing PHP code include using meaningful variable names, following coding standards like PSR-2, validating user input, using prepared statements for database queries, and securing against security vulnerabilities."
+  
+  utter_reactjs:
+  - text: "ReactJS is a JavaScript library for building user interfaces. It is maintained by Facebook and is known for its component-based architecture and efficient rendering. ReactJS is often used to create interactive and dynamic web applications."
+
+  utter_reactjs_syntax:
+  - text: "ReactJS syntax involves writing components using JSX (JavaScript XML) syntax, which allows you to define the structure and appearance of UI elements in a declarative manner."
+
+  utter_reactjs_components:
+  - text: "ReactJS components are reusable building blocks that encapsulate a part of the user interface. Components can be created as functional components or class components."
+
+  utter_reactjs_state:
+  - text: "In ReactJS, state represents the data that can change over time and affect a component's rendering. State is typically set and updated using the `useState` hook or the `this.setState` method."
+
+  utter_reactjs_props:
+  - text: "ReactJS props (short for properties) are used to pass data from parent to child components. They allow you to customize and configure components by passing data as attributes."
+
+  utter_reactjs_lifecycle:
+  - text: "The ReactJS component lifecycle includes methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` that control the behavior of components at different stages."
+
+  utter_reactjs_events:
+  - text: "ReactJS events are used to handle user interactions and trigger actions in components. Common event handlers include `onClick`, `onChange`, and `onSubmit`."
+
+  utter_reactjs_state_mngmt:
+  - text: "ReactJS offers various state management options, including local component state, Redux for global state management, Mobx for observable state, and the Context API for passing state down the component tree."
+
+  utter_reactjs_best_practices:
+  - text: "Best practices for writing ReactJS code include breaking UI into reusable components, following naming conventions, managing state efficiently, testing components, and optimizing performance."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

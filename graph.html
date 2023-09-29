@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style id="graph-style">
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.getElementById('graph-style').sheet.cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_javascript];
+2 [class="", fontsize=12, label=utter_javascript_syntax];
+3 [class="", fontsize=12, label=utter_manipulate_dom];
+4 [class="", fontsize=12, label=utter_javascript_functions];
+5 [class="", fontsize=12, label=utter_javascript_ajax];
+6 [class="", fontsize=12, label=utter_javascript_events];
+7 [class="", fontsize=12, label=utter_javascript_best_practices];
+8 [class="", fontsize=12, label=utter_python];
+9 [class="", fontsize=12, label=utter_python_syntax];
+10 [class="", fontsize=12, label=utter_python_variables];
+11 [class="", fontsize=12, label=utter_python_data_types];
+12 [class="", fontsize=12, label=utter_python_operators];
+13 [class="", fontsize=12, label=utter_python_control_structures];
+14 [class="", fontsize=12, label=utter_python_functions];
+15 [class="", fontsize=12, label=utter_python_oop];
+16 [class="", fontsize=12, label=utter_python_libraries];
+17 [class="", fontsize=12, label=utter_python_best_practices];
+18 [class="", fontsize=12, label=utter_java];
+19 [class="", fontsize=12, label=utter_java_syntax];
+20 [class="", fontsize=12, label=utter_java_variables];
+21 [class="", fontsize=12, label=utter_java_data_types];
+22 [class="", fontsize=12, label=utter_java_operators];
+23 [class="", fontsize=12, label=utter_java_control_structures];
+24 [class="", fontsize=12, label=utter_java_functions];
+25 [class="", fontsize=12, label=utter_java_oop];
+26 [class="", fontsize=12, label=utter_java_libraries];
+27 [class="", fontsize=12, label=utter_java_best_practices];
+28 [class="", fontsize=12, label=utter_php];
+29 [class="", fontsize=12, label=utter_php_syntax];
+30 [class="", fontsize=12, label=utter_php_variables];
+31 [class="", fontsize=12, label=utter_php_data_types];
+32 [class="", fontsize=12, label=utter_php_operators];
+33 [class="", fontsize=12, label=utter_php_control_structures];
+34 [class="", fontsize=12, label=utter_php_functions];
+35 [class="", fontsize=12, label=utter_php_oop];
+36 [class="", fontsize=12, label=utter_php_libraries];
+37 [class="", fontsize=12, label=utter_php_best_practices];
+38 [class="", fontsize=12, label=utter_reactjs];
+39 [class="", fontsize=12, label=utter_reactjs_syntax];
+40 [class="", fontsize=12, label=utter_reactjs_components];
+41 [class="", fontsize=12, label=utter_reactjs_state];
+42 [class="", fontsize=12, label=utter_reactjs_props];
+43 [class="", fontsize=12, label=utter_reactjs_lifecycle];
+44 [class="", fontsize=12, label=utter_reactjs_events];
+45 [class="", fontsize=12, label=utter_reactjs_state_mngmt];
+46 [class="", fontsize=12, label=utter_reactjs_best_practices];
+47 [class="", fontsize=12, label=utter_greet];
+48 [class="", fontsize=12, label=utter_happy];
+50 [class="", fontsize=12, label=utter_cheer_up];
+51 [class="", fontsize=12, label=utter_did_that_help];
+56 [class="", fontsize=12, label=utter_goodbye];
+57 [class="", fontsize=12, label=utter_default_fallback];
+58 [class="", fontsize=12, label=utter_html_element];
+59 [class="", fontsize=12, label=utter_create_html_element];
+60 [class="", fontsize=12, label=utter_style_html];
+61 [class="", fontsize=12, label=utter_html_with_javascript];
+62 [class="", fontsize=12, label=utter_html_best_practices];
+63 [class="", fontsize=12, label=utter_css];
+64 [class="", fontsize=12, label=utter_css_styles];
+65 [class="", fontsize=12, label=utter_css_selectors];
+66 [class="", fontsize=12, label=utter_css_layout];
+67 [class="", fontsize=12, label=utter_css_animations];
+68 [class="", fontsize=12, label=utter_css_best_practices];
+69 [class="", fontsize=12, label=utter_troubleshoot_css];
+70 [class="", fontsize=12, label="..."];
+71 [class="", fontsize=12, label=action_two_stage_fallback];
+75 [class="", fontsize=12, label=utter_iamabot];
+76 [class=intent, fillcolor=lightblue, label="What are the basics of JavaScript?", shape=rect, style=filled];
+77 [class=intent, fillcolor=lightblue, label="Explain Python to me.", shape=rect, style=filled];
+78 [class=intent, fillcolor=lightblue, label="What is Java?", shape=rect, style=filled];
+79 [class=intent, fillcolor=lightblue, label="Introduction to PHP.", shape=rect, style=filled];
+80 [class=intent, fillcolor=lightblue, label="Tell me about ReactJS.", shape=rect, style=filled];
+81 [class=intent, fillcolor=lightblue, label=hey, shape=rect, style=filled];
+82 [class=intent, fillcolor=lightblue, label="What do you mean?", shape=rect, style=filled];
+83 [class=intent, fillcolor=lightblue, label="Can you tell me about HTML tags?", shape=rect, style=filled];
+84 [class=intent, fillcolor=lightblue, label="What is the role of CSS in web design?", shape=rect, style=filled];
+85 [class=intent, fillcolor=lightblue, label="How do I declare variables in JavaScript?", shape=rect, style=filled];
+86 [class=intent, fillcolor=lightblue, label="How to handle user interactions with JavaScript?", shape=rect, style=filled];
+87 [class=intent, fillcolor=lightblue, label="Show me how to use the `this` keyword in functions.", shape=rect, style=filled];
+88 [class=intent, fillcolor=lightblue, label="Explain AJAX in JavaScript.", shape=rect, style=filled];
+89 [class=intent, fillcolor=lightblue, label="Show me how to use event delegation in JavaScript.", shape=rect, style=filled];
+90 [class=intent, fillcolor=lightblue, label="What are the best practices for writing JavaScript code?", shape=rect, style=filled];
+91 [class=intent, fillcolor=lightblue, label="How is Python code structured?", shape=rect, style=filled];
+92 [class=intent, fillcolor=lightblue, label="How do I declare variables in Python?", shape=rect, style=filled];
+93 [class=intent, fillcolor=lightblue, label="Python integers, floats, and strings.", shape=rect, style=filled];
+94 [class=intent, fillcolor=lightblue, label="Python operators.", shape=rect, style=filled];
+95 [class=intent, fillcolor=lightblue, label="Exception handling in Python.", shape=rect, style=filled];
+96 [class=intent, fillcolor=lightblue, label="Lambda functions in Python.", shape=rect, style=filled];
+97 [class=intent, fillcolor=lightblue, label="Object-Oriented Programming in Python.", shape=rect, style=filled];
+98 [class=intent, fillcolor=lightblue, label="NumPy, pandas, Matplotlib in Python.", shape=rect, style=filled];
+99 [class=intent, fillcolor=lightblue, label="Python best practices.", shape=rect, style=filled];
+100 [class=intent, fillcolor=lightblue, label="How is Java code structured?", shape=rect, style=filled];
+101 [class=intent, fillcolor=lightblue, label="Explain Java variable declaration.", shape=rect, style=filled];
+102 [class=intent, fillcolor=lightblue, label="Lists, arrays, and collections in Java.", shape=rect, style=filled];
+103 [class=intent, fillcolor=lightblue, label="Comparison and logical operators.", shape=rect, style=filled];
+104 [class=intent, fillcolor=lightblue, label="Exception handling in Java.", shape=rect, style=filled];
+105 [class=intent, fillcolor=lightblue, label="Method overloading and overriding in Java.", shape=rect, style=filled];
+106 [class=intent, fillcolor=lightblue, label="Polymorphism in Java.", shape=rect, style=filled];
+107 [class=intent, fillcolor=lightblue, label="Java libraries and frameworks.", shape=rect, style=filled];
+108 [class=intent, fillcolor=lightblue, label="Java best practices.", shape=rect, style=filled];
+109 [class=intent, fillcolor=lightblue, label="PHP code structure.", shape=rect, style=filled];
+110 [class=intent, fillcolor=lightblue, label="Explain PHP variable declaration.", shape=rect, style=filled];
+111 [class=intent, fillcolor=lightblue, label="Explain PHP data structures.", shape=rect, style=filled];
+112 [class=intent, fillcolor=lightblue, label="PHP operators.", shape=rect, style=filled];
+113 [class=intent, fillcolor=lightblue, label="PHP for and while loops.", shape=rect, style=filled];
+114 [class=intent, fillcolor=lightblue, label="How to define functions in PHP?", shape=rect, style=filled];
+115 [class=intent, fillcolor=lightblue, label="Object-Oriented Programming in PHP.", shape=rect, style=filled];
+116 [class=intent, fillcolor=lightblue, label="Laravel, Symfony, and CodeIgniter in PHP.", shape=rect, style=filled];
+117 [class=intent, fillcolor=lightblue, label="Testing and debugging in PHP.", shape=rect, style=filled];
+118 [class=intent, fillcolor=lightblue, label="How is ReactJS code structured?", shape=rect, style=filled];
+119 [class=intent, fillcolor=lightblue, label="Functional and class components in ReactJS.", shape=rect, style=filled];
+120 [class=intent, fillcolor=lightblue, label="Managing state in ReactJS components.", shape=rect, style=filled];
+121 [class=intent, fillcolor=lightblue, label="What are ReactJS props?", shape=rect, style=filled];
+122 [class=intent, fillcolor=lightblue, label="ComponentDidMount, componentDidUpdate, and componentWillUnmount in ReactJS.", shape=rect, style=filled];
+123 [class=intent, fillcolor=lightblue, label="Handling events in ReactJS.", shape=rect, style=filled];
+124 [class=intent, fillcolor=lightblue, label="State management options in ReactJS.", shape=rect, style=filled];
+125 [class=intent, fillcolor=lightblue, label="ReactJS best practices.", shape=rect, style=filled];
+126 [class=intent, fillcolor=lightblue, label=perfect, shape=rect, style=filled];
+127 [class=intent, fillcolor=lightblue, label="my day was horrible", shape=rect, style=filled];
+128 [class=intent, fillcolor=lightblue, label=indeed, shape=rect, style=filled];
+129 [class=intent, fillcolor=lightblue, label="don't like that", shape=rect, style=filled];
+130 [class=intent, fillcolor=lightblue, label="Teach me to make a list in HTML.", shape=rect, style=filled];
+131 [class=intent, fillcolor=lightblue, label="How can I style my HTML page?", shape=rect, style=filled];
+132 [class=intent, fillcolor=lightblue, label="Can you help with JavaScript for HTML manipulation?", shape=rect, style=filled];
+133 [class=intent, fillcolor=lightblue, label="Explain HTML semantic elements and their importance.", shape=rect, style=filled];
+134 [class=intent, fillcolor=lightblue, label="What's the CSS code for changing font size?", shape=rect, style=filled];
+135 [class=intent, fillcolor=lightblue, label="What are pseudo-classes and pseudo-elements in CSS?", shape=rect, style=filled];
+136 [class=intent, fillcolor=lightblue, label="Show me how to create a responsive navigation menu in CSS.", shape=rect, style=filled];
+137 [class=intent, fillcolor=lightblue, label="How do I create animations using CSS?", shape=rect, style=filled];
+138 [class=intent, fillcolor=lightblue, label="Tell me the basics of CSS preprocessors like SASS.", shape=rect, style=filled];
+139 [class=intent, fillcolor=lightblue, label="My CSS styles are not applying. What's wrong?", shape=rect, style=filled];
+140 [class=intent, fillcolor=lightblue, label="/nlu_fallback", shape=rect, style=filled];
+141 [class=intent, fillcolor=lightblue, label="good by", shape=rect, style=filled];
+142 [class=intent, fillcolor=lightblue, label="am I talking to a bot?", shape=rect, style=filled];
+0 -> 70  [class="", key=NONE, label=""];
+0 -> 76  [class="", key=0];
+0 -> 77  [class="", key=0];
+0 -> 78  [class="", key=0];
+0 -> 79  [class="", key=0];
+0 -> 80  [class="", key=0];
+0 -> 81  [class="", key=0];
+0 -> 82  [class="", key=0];
+0 -> 83  [class="", key=0];
+0 -> 84  [class="", key=0];
+1 -> 85  [class="", key=0];
+2 -> 86  [class="", key=0];
+3 -> 87  [class="", key=0];
+4 -> 88  [class="", key=0];
+5 -> 89  [class="", key=0];
+6 -> 90  [class="", key=0];
+7 -> "-1"  [class="", key=NONE, label=""];
+8 -> 91  [class="", key=0];
+9 -> 92  [class="", key=0];
+10 -> 93  [class="", key=0];
+11 -> 94  [class="", key=0];
+12 -> 95  [class="", key=0];
+13 -> 96  [class="", key=0];
+14 -> 97  [class="", key=0];
+15 -> 98  [class="", key=0];
+16 -> 99  [class="", key=0];
+17 -> "-1"  [class="", key=NONE, label=""];
+18 -> 100  [class="", key=0];
+19 -> 101  [class="", key=0];
+20 -> 102  [class="", key=0];
+21 -> 103  [class="", key=0];
+22 -> 104  [class="", key=0];
+23 -> 105  [class="", key=0];
+24 -> 106  [class="", key=0];
+25 -> 107  [class="", key=0];
+26 -> 108  [class="", key=0];
+27 -> "-1"  [class="", key=NONE, label=""];
+28 -> 109  [class="", key=0];
+29 -> 110  [class="", key=0];
+30 -> 111  [class="", key=0];
+31 -> 112  [class="", key=0];
+32 -> 113  [class="", key=0];
+33 -> 114  [class="", key=0];
+34 -> 115  [class="", key=0];
+35 -> 116  [class="", key=0];
+36 -> 117  [class="", key=0];
+37 -> "-1"  [class="", key=NONE, label=""];
+38 -> 118  [class="", key=0];
+39 -> 119  [class="", key=0];
+40 -> 120  [class="", key=0];
+41 -> 121  [class="", key=0];
+42 -> 122  [class="", key=0];
+43 -> 123  [class="", key=0];
+44 -> 124  [class="", key=0];
+45 -> 125  [class="", key=0];
+46 -> "-1"  [class="", key=NONE, label=""];
+47 -> 126  [class="", key=0];
+47 -> 127  [class="", key=0];
+48 -> "-1"  [class="", key=NONE, label=""];
+50 -> 51  [class="", key=NONE, label=""];
+51 -> 128  [class="", key=0];
+51 -> 129  [class="", key=0];
+56 -> "-1"  [class="", key=NONE, label=""];
+57 -> "-1"  [class="", key=NONE, label=""];
+58 -> 130  [class="", key=0];
+59 -> 131  [class="", key=0];
+60 -> 132  [class="", key=0];
+61 -> 133  [class="", key=0];
+62 -> "-1"  [class="", key=NONE, label=""];
+63 -> 134  [class="", key=0];
+64 -> 135  [class="", key=0];
+65 -> 136  [class="", key=0];
+66 -> 137  [class="", key=0];
+67 -> 138  [class="", key=0];
+68 -> 139  [class="", key=0];
+69 -> "-1"  [class="", key=NONE, label=""];
+70 -> 140  [class="", key=0];
+70 -> 141  [class="", key=0];
+70 -> 142  [class="", key=0];
+71 -> "-1"  [class="", key=NONE, label=""];
+75 -> "-1"  [class="", key=NONE, label=""];
+76 -> 1  [class="", key=0];
+77 -> 8  [class="", key=0];
+78 -> 18  [class="", key=0];
+79 -> 28  [class="", key=0];
+80 -> 38  [class="", key=0];
+81 -> 47  [class="", key=0];
+82 -> 57  [class="", key=0];
+83 -> 58  [class="", key=0];
+84 -> 63  [class="", key=0];
+85 -> 2  [class="", key=0];
+86 -> 3  [class="", key=0];
+87 -> 4  [class="", key=0];
+88 -> 5  [class="", key=0];
+89 -> 6  [class="", key=0];
+90 -> 7  [class="", key=0];
+91 -> 9  [class="", key=0];
+92 -> 10  [class="", key=0];
+93 -> 11  [class="", key=0];
+94 -> 12  [class="", key=0];
+95 -> 13  [class="", key=0];
+96 -> 14  [class="", key=0];
+97 -> 15  [class="", key=0];
+98 -> 16  [class="", key=0];
+99 -> 17  [class="", key=0];
+100 -> 19  [class="", key=0];
+101 -> 20  [class="", key=0];
+102 -> 21  [class="", key=0];
+103 -> 22  [class="", key=0];
+104 -> 23  [class="", key=0];
+105 -> 24  [class="", key=0];
+106 -> 25  [class="", key=0];
+107 -> 26  [class="", key=0];
+108 -> 27  [class="", key=0];
+109 -> 29  [class="", key=0];
+110 -> 30  [class="", key=0];
+111 -> 31  [class="", key=0];
+112 -> 32  [class="", key=0];
+113 -> 33  [class="", key=0];
+114 -> 34  [class="", key=0];
+115 -> 35  [class="", key=0];
+116 -> 36  [class="", key=0];
+117 -> 37  [class="", key=0];
+118 -> 39  [class="", key=0];
+119 -> 40  [class="", key=0];
+120 -> 41  [class="", key=0];
+121 -> 42  [class="", key=0];
+122 -> 43  [class="", key=0];
+123 -> 44  [class="", key=0];
+124 -> 45  [class="", key=0];
+125 -> 46  [class="", key=0];
+126 -> 48  [class="", key=0];
+127 -> 50  [class="", key=0];
+128 -> 48  [class="", key=0];
+129 -> 56  [class="", key=0];
+130 -> 59  [class="", key=0];
+131 -> 60  [class="", key=0];
+132 -> 61  [class="", key=0];
+133 -> 62  [class="", key=0];
+134 -> 64  [class="", key=0];
+135 -> 65  [class="", key=0];
+136 -> 66  [class="", key=0];
+137 -> 67  [class="", key=0];
+138 -> 68  [class="", key=0];
+139 -> 69  [class="", key=0];
+140 -> 71  [class="", key=0];
+141 -> 56  [class="", key=0];
+142 -> 75  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>

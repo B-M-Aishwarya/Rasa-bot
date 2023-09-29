@@ -1,0 +1,585 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: default_fallback
+  examples:
+    - text: "I don't understand"
+    - text: "Can you repeat that?"
+    - text: "What do you mean?"
+    - text: "Please clarify"
+
+- intent: html_element
+  examples: |
+    - What is an HTML element?
+    - html
+    - about html
+    - Explain HTML elements to me.
+    - Can you tell me about HTML tags?
+    - I want to learn about HTML elements.
+    - Tell me about HTML.
+
+- intent: create_html_element
+  examples: |
+    - How can I create a hyperlink in HTML?
+    - What's the code for adding an image in HTML?
+    - Teach me to make a list in HTML.
+    - I need to create a table in HTML.
+    - How do I insert a form in my HTML page?
+    - Show me how to add headings in HTML.
+
+- intent: style_html
+  examples: |
+    - How can I style my HTML page?
+    - Teach me CSS for HTML.
+    - What's the CSS code for changing text color?
+    - Explain CSS properties for backgrounds.
+    - How to apply fonts to HTML text?
+    - Show me how to center elements using CSS.
+
+- intent: html_with_javascript
+  examples: |
+    - Can you help with JavaScript for HTML manipulation?
+    - How do I change HTML content using JavaScript?
+    - Explain event handling in HTML with JavaScript.
+    - I want to know how to validate forms using JavaScript.
+    - Teach me how to create dynamic web pages with JS.
+  
+- intent: html_best_practices
+  examples: |
+    - What are the best practices for writing HTML?
+    - Explain HTML semantic elements and their importance.
+    - How can I optimize my HTML for SEO?
+    - Teach me about accessibility in HTML.
+    - What's the importance of valid HTML markup?
+    - Tell me the basics of responsive web design in HTML.
+   
+- intent: css
+  examples: |
+    - What is CSS?
+    - Explain the purpose of CSS.
+    - Can you tell me about CSS styling?
+    - How does CSS work?
+    - What is the role of CSS in web design?
+
+- intent: css_styles
+  examples: |
+    - How can I apply CSS styles to text?
+    - Tell me more about CSS.
+    - What's the CSS code for changing font size?
+    - Teach me how to add colors to elements using CSS.
+    - Explain CSS properties for margins and padding.
+    - How to use CSS to style backgrounds?
+    - Show me how to create CSS classes and IDs.
+
+- intent: css_selectors
+  examples: |
+    - What are CSS selectors?
+    - Explain the different types of CSS selectors.
+    - Teach me about element selectors in CSS.
+    - How do I use class selectors in CSS?
+    - Show me how to select elements by ID in CSS.
+    - What are pseudo-classes and pseudo-elements in CSS?
+
+- intent: css_layout
+  examples: |
+    - How can I control the layout of a webpage with CSS?
+    - Explain CSS layout techniques like Flexbox.
+    - Teach me how to create responsive designs with CSS Grid.
+    - What's the CSS code for centering elements horizontally?
+    - Show me how to create a responsive navigation menu in CSS.
+    - How to create a two-column layout in CSS?
+
+- intent: css_animations
+  examples: |
+    - How do I create animations using CSS?
+    - Explain CSS keyframes and animations.
+    - Teach me how to make elements move with CSS transitions.
+    - What's the CSS code for fading in elements?
+    - Show me how to create a CSS carousel.
+    - How can I animate CSS properties like color and size?
+
+- intent: css_best_practices
+  examples: |
+    - What are the best practices for writing CSS?
+    - Explain CSS naming conventions and methodologies.
+    - How can I optimize my CSS for performance?
+    - Teach me about cross-browser compatibility in CSS.
+    - What's the importance of responsive web design in CSS?
+    - Tell me the basics of CSS preprocessors like SASS.
+
+- intent: troubleshoot_css
+  examples: |
+    - My CSS styles are not applying. What's wrong?
+    - Help me debug CSS issues in my webpage.
+    - Explain common CSS problems and solutions.
+    - How to deal with browser-specific CSS quirks?
+    - Teach me how to inspect and modify CSS in browser dev tools.
+    - What tools can I use for CSS debugging and optimization?
+
+- intent: javascript
+  examples: |
+    - What is JavaScript?
+    - JS
+    - about JS
+    - Explain the purpose of JavaScript.
+    - Can you tell me about JavaScript programming?
+    - How does JavaScript work in web development?
+    - Tell me more about JavaScript.
+    - What are the basics of JavaScript?
+
+- intent: javascript_syntax
+  examples: |
+    - Teach me JavaScript syntax.
+    - How do I declare variables in JavaScript?
+    - Explain JavaScript data types.
+    - What are JavaScript operators?
+    - How to use conditional statements in JavaScript?
+    - Show me how to create functions in JavaScript.
+
+- intent: manipulate_dom
+  examples: |
+    - How can I manipulate the DOM with JavaScript?
+    - Explain DOM manipulation techniques.
+    - Teach me how to change HTML content using JavaScript.
+    - What are event listeners in JavaScript?
+    - Show me how to add or remove elements in the DOM.
+    - How to handle user interactions with JavaScript?
+
+- intent: javascript_functions
+  examples: |
+    - Teach me about JavaScript functions.
+    - How to pass parameters to functions in JavaScript?
+    - Explain the concept of callbacks in JavaScript.
+    - What are arrow functions in JavaScript?
+    - Show me how to use the `this` keyword in functions.
+    - How to return values from functions in JavaScript?
+
+- intent: javascript_ajax
+  examples: |
+    - Explain AJAX in JavaScript.
+    - Teach me how to make asynchronous requests with JavaScript.
+    - What is the XMLHttpRequest object?
+    - How to use fetch API for data retrieval in JavaScript?
+    - Show me how to handle AJAX responses.
+    - How can I work with JSON data in JavaScript?
+
+- intent: javascript_events
+  examples: |
+    - How do JavaScript events work?
+    - Teach me about handling events in JavaScript.
+    - What are event propagation and bubbling?
+    - Explain how to prevent default actions in events.
+    - Show me how to use event delegation in JavaScript.
+    - How to create custom events in JavaScript?
+
+- intent: javascript_best_practices
+  examples: |
+    - What are the best practices for writing JavaScript code?
+    - Explain JavaScript coding conventions.
+    - How can I optimize JavaScript code for performance?
+    - Teach me about error handling in JavaScript.
+    - What's the importance of modular JavaScript?
+    - Tell me about ES6 features like classes and modules.
+
+- intent: python
+  examples: |
+    - What is Python?
+    - Tell me about Python.
+    - Explain Python to me.
+    - What can you tell me about Python?
+    - Teach me Python.
+    - Introduction to Python.
+    - Define python.
+
+- intent: python_syntax
+  examples: |
+    - Explain Python syntax.
+    - Tell me about Python's syntax.
+    - What does Python code look like?
+    - Python code structure.
+    - How is Python code structured?
+
+- intent: python_variables
+  examples: |
+    - What are Python variables?
+    - Explain Python variable declaration.
+    - How do I declare variables in Python?
+    - Python variable naming rules.
+    - Python variable types.
+
+- intent: python_data_types
+  examples: |
+    - Python data types.
+    - What are the data types in Python?
+    - Explain Python data structures.
+    - Python integers, floats, and strings.
+    - Lists, tuples, dictionaries in Python.
+
+- intent: python_operators
+  examples: |
+    - Python operators.
+    - Explain Python operators.
+    - Arithmetic operators in Python.
+    - Comparison and logical operators.
+    - Assignment operators.
+
+- intent: python_control_structures
+  examples: |
+    - Python control structures.
+    - What are Python control statements?
+    - Python if statements.
+    - Python for and while loops.
+    - Exception handling in Python.
+
+- intent: python_functions
+  examples: |
+    - Python functions.
+    - How to define functions in Python?
+    - Python function parameters and return values.
+    - Function scope in Python.
+    - Lambda functions in Python.
+
+- intent: python_oop
+  examples: |
+    - Object-Oriented Programming in Python.
+    - Python classes and objects.
+    - Python inheritance and encapsulation.
+    - Polymorphism in Python.
+    - Abstraction in Python.
+
+- intent: python_libraries
+  examples: |
+    - Python libraries and modules.
+    - Popular Python libraries.
+    - How to use external libraries in Python?
+    - NumPy, pandas, Matplotlib in Python.
+    - Machine learning libraries in Python.
+
+- intent: python_best_practices
+  examples: |
+    - Python best practices.
+    - How to write clean Python code?
+    - Python coding conventions.
+    - Testing and debugging in Python.
+    - Documentation and comments in Python.
+
+- intent: java
+  examples: |
+    - What is Java?
+    - Tell me about Java.
+    - Explain Java to me.
+    - What can you tell me about Java?
+    - Teach me Java.
+    - Introduction to Java.
+
+- intent: java_syntax
+  examples: |
+    - Explain Java syntax.
+    - Tell me about Java's syntax.
+    - What does Java code look like?
+    - Java code structure.
+    - How is Java code structured?
+
+- intent: java_variables
+  examples: |
+    - What are Java variables?
+    - Explain Java variable declaration.
+    - How do I declare variables in Java?
+    - Java variable naming rules.
+    - Java variable types.
+
+- intent: java_data_types
+  examples: |
+    - Java data types.
+    - What are the data types in Java?
+    - Explain Java data structures.
+    - Java integers, floats, and strings.
+    - Lists, arrays, and collections in Java.
+
+- intent: java_operators
+  examples: |
+    - Java operators.
+    - Explain Java operators.
+    - Arithmetic operators in Java.
+    - Comparison and logical operators.
+    - Assignment operators.
+
+- intent: java_control_structures
+  examples: |
+    - Java control structures.
+    - What are Java control statements?
+    - Java if statements.
+    - Java for and while loops.
+    - Exception handling in Java.
+
+- intent: java_functions
+  examples: |
+    - Java functions.
+    - How to define methods in Java?
+    - Java method parameters and return values.
+    - Method overloading and overriding in Java.
+    - Lambda expressions in Java.
+
+- intent: java_oop
+  examples: |
+    - Object-Oriented Programming in Java.
+    - Java classes and objects.
+    - Java inheritance and encapsulation.
+    - Polymorphism in Java.
+    - Abstraction in Java.
+
+- intent: java_libraries
+  examples: |
+    - Java libraries and frameworks.
+    - Popular Java libraries.
+    - How to use external libraries in Java?
+    - Spring, Hibernate, and JavaFX in Java.
+    - Java libraries for web development.
+
+- intent: java_best_practices
+  examples: |
+    - Java best practices.
+    - How to write clean Java code?
+    - Java coding conventions.
+    - Testing and debugging in Java.
+    - Documentation and comments in Java.
+
+- intent: php
+  examples: |
+    - What is PHP?
+    - Tell me about PHP.
+    - Explain PHP to me.
+    - What can you tell me about PHP?
+    - Teach me PHP.
+    - Introduction to PHP.
+
+- intent: php_syntax
+  examples: |
+    - Explain PHP syntax.
+    - Tell me about PHP's syntax.
+    - What does PHP code look like?
+    - PHP code structure.
+    - How is PHP code structured?
+
+- intent: php_variables
+  examples: |
+    - What are PHP variables?
+    - Explain PHP variable declaration.
+    - How do I declare variables in PHP?
+    - PHP variable naming rules.
+    - PHP variable types.
+
+- intent: php_data_types
+  examples: |
+    - PHP data types.
+    - What are the data types in PHP?
+    - Explain PHP data structures.
+    - PHP integers, floats, and strings.
+    - Arrays, objects, and resources in PHP.
+
+- intent: php_operators
+  examples: |
+    - PHP operators.
+    - Explain PHP operators.
+    - Arithmetic operators in PHP.
+    - Comparison and logical operators.
+    - Assignment operators.
+
+- intent: php_control_structures
+  examples: |
+    - PHP control structures.
+    - What are PHP control statements?
+    - PHP if statements.
+    - PHP for and while loops.
+    - Exception handling in PHP.
+
+- intent: php_functions
+  examples: |
+    - PHP functions.
+    - How to define functions in PHP?
+    - PHP function parameters and return values.
+    - Function scope in PHP.
+    - Anonymous functions and closures in PHP.
+
+- intent: php_oop
+  examples: |
+    - Object-Oriented Programming in PHP.
+    - PHP classes and objects.
+    - PHP inheritance and encapsulation.
+    - Polymorphism in PHP.
+    - Abstract classes and interfaces in PHP.
+
+- intent: php_libraries
+  examples: |
+    - PHP libraries and frameworks.
+    - Popular PHP libraries.
+    - How to use external libraries in PHP?
+    - Laravel, Symfony, and CodeIgniter in PHP.
+    - PHP libraries for web development.
+
+- intent: php_best_practices
+  examples: |
+    - PHP best practices.
+    - How to write clean PHP code?
+    - PHP coding conventions.
+    - Testing and debugging in PHP.
+    - Documentation and comments in PHP.
+
+- intent: reactjs
+  examples: |
+    - What is ReactJS?
+    - Tell me about ReactJS.
+    - Explain ReactJS to me.
+    - What can you tell me about ReactJS?
+    - Teach me ReactJS.
+    - Introduction to ReactJS.
+
+- intent: reactjs_syntax
+  examples: |
+    - Explain ReactJS syntax.
+    - Tell me about ReactJS's syntax.
+    - What does ReactJS code look like?
+    - ReactJS code structure.
+    - How is ReactJS code structured?
+
+- intent: reactjs_components
+  examples: |
+    - ReactJS components.
+    - What are ReactJS components?
+    - Explain ReactJS component creation.
+    - How to create components in ReactJS?
+    - Functional and class components in ReactJS.
+
+- intent: reactjs_state
+  examples: |
+    - ReactJS state.
+    - How does state work in ReactJS?
+    - Managing state in ReactJS components.
+    - Setting and updating state in ReactJS.
+    - Props and state in ReactJS.
+
+- intent: reactjs_props
+  examples: |
+    - ReactJS props.
+    - What are ReactJS props?
+    - Passing props to ReactJS components.
+    - Using props to customize components.
+    - Prop types in ReactJS.
+
+- intent: reactjs_lifecycle
+  examples: |
+    - ReactJS component lifecycle.
+    - Explain the lifecycle of a ReactJS component.
+    - ComponentDidMount, componentDidUpdate, and componentWillUnmount in ReactJS.
+    - ReactJS lifecycle methods.
+
+- intent: reactjs_events
+  examples: |
+    - ReactJS events.
+    - Handling events in ReactJS.
+    - Event handling in ReactJS components.
+    - onClick, onChange, and other event handlers in ReactJS.
+
+- intent: reactjs_state_mngmt
+  examples: |
+    - ReactJS state management.
+    - State management options in ReactJS.
+    - Redux, Mobx, and Context API in ReactJS.
+    - Managing global state in ReactJS applications.
+
+- intent: reactjs_best_practices
+  examples: |
+    - ReactJS best practices.
+    - How to write clean ReactJS code?
+    - ReactJS coding conventions.
+    - Component reusability in ReactJS.
+    - Testing ReactJS components.

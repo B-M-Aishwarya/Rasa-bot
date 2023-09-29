@@ -1,0 +1,172 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: fallback
+  steps:
+  - intent: default_fallback
+  - action: utter_default_fallback
+
+- story: html path
+  steps:
+  - intent: html_element
+  - action: utter_html_element
+  - intent: create_html_element
+  - action: utter_create_html_element
+  - intent: style_html
+  - action: utter_style_html
+  - intent: html_with_javascript
+  - action: utter_html_with_javascript
+  - intent: html_best_practices
+  - action: utter_html_best_practices
+
+- story: css path
+  steps:
+  - intent: css
+  - action: utter_css
+  - intent: css_styles
+  - action: utter_css_styles
+  - intent: css_selectors
+  - action: utter_css_selectors
+  - intent: css_layout
+  - action: utter_css_layout
+  - intent: css_animations
+  - action: utter_css_animations
+  - intent: css_best_practices
+  - action: utter_css_best_practices
+  - intent: troubleshoot_css
+  - action: utter_troubleshoot_css
+
+- story: js path
+  steps:
+  - intent: javascript
+  - action: utter_javascript
+  - intent: javascript_syntax
+  - action: utter_javascript_syntax
+  - intent: manipulate_dom
+  - action: utter_manipulate_dom
+  - intent: javascript_functions
+  - action: utter_javascript_functions
+  - intent: javascript_ajax
+  - action: utter_javascript_ajax
+  - intent: javascript_events
+  - action: utter_javascript_events
+  - intent: javascript_best_practices
+  - action: utter_javascript_best_practices
+
+- story: python path
+  steps:
+  - intent: python
+  - action: utter_python
+  - intent: python_syntax
+  - action: utter_python_syntax
+  - intent: python_variables
+  - action: utter_python_variables
+  - intent: python_data_types
+  - action: utter_python_data_types
+  - intent: python_operators
+  - action: utter_python_operators
+  - intent: python_control_structures
+  - action: utter_python_control_structures
+  - intent: python_functions
+  - action: utter_python_functions
+  - intent: python_oop
+  - action: utter_python_oop
+  - intent: python_libraries
+  - action: utter_python_libraries
+  - intent: python_best_practices
+  - action: utter_python_best_practices
+
+- story: java path
+  steps:
+  - intent: java
+  - action: utter_java
+  - intent: java_syntax
+  - action: utter_java_syntax
+  - intent: java_variables
+  - action: utter_java_variables
+  - intent: java_data_types
+  - action: utter_java_data_types
+  - intent: java_operators
+  - action: utter_java_operators
+  - intent: java_control_structures
+  - action: utter_java_control_structures
+  - intent: java_functions
+  - action: utter_java_functions
+  - intent: java_oop
+  - action: utter_java_oop
+  - intent: java_libraries
+  - action: utter_java_libraries
+  - intent: java_best_practices
+  - action: utter_java_best_practices
+
+- story: php path
+  steps:
+  - intent: php
+  - action: utter_php
+  - intent: php_syntax
+  - action: utter_php_syntax
+  - intent: php_variables
+  - action: utter_php_variables
+  - intent: php_data_types
+  - action: utter_php_data_types
+  - intent: php_operators
+  - action: utter_php_operators
+  - intent: php_control_structures
+  - action: utter_php_control_structures
+  - intent: php_functions
+  - action: utter_php_functions
+  - intent: php_oop
+  - action: utter_php_oop
+  - intent: php_libraries
+  - action: utter_php_libraries
+  - intent: php_best_practices
+  - action: utter_php_best_practices
+
+- story: reactjs path
+  steps:
+  - intent: reactjs
+  - action: utter_reactjs
+  - intent: reactjs_syntax
+  - action: utter_reactjs_syntax
+  - intent: reactjs_components
+  - action: utter_reactjs_components
+  - intent: reactjs_state
+  - action: utter_reactjs_state
+  - intent: reactjs_props
+  - action: utter_reactjs_props
+  - intent: reactjs_lifecycle
+  - action: utter_reactjs_lifecycle
+  - intent: reactjs_events
+  - action: utter_reactjs_events
+  - intent: reactjs_state_mngmt
+  - action: utter_reactjs_state_mngmt
+  - intent: reactjs_best_practices
+  - action: utter_reactjs_best_practices
